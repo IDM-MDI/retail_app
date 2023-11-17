@@ -11,7 +11,7 @@ class Retail(models.Model):
     contact = models.OneToOneField(to=Contact, on_delete=models.CASCADE)
     products = models.ManyToManyField(to=Product)
     users = models.ManyToManyField(to=User)
-    debt = models.DecimalField()
+    debt = models.DecimalField(max_digits=20, decimal_places=2)
     type = models.CharField(
         max_length=2,
         choices=RetailType.choices,
