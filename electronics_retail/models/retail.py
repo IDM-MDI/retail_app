@@ -12,8 +12,12 @@ class Retail(models.Model):
     products = models.ManyToManyField(to=Product)
     users = models.ManyToManyField(to=User)
     debt = models.DecimalField(max_digits=20, decimal_places=2)
+    provider = models.ForeignKey("self", null=True, blank=True, on_delete=models.CASCADE)
     type = models.CharField(
         max_length=2,
         choices=RetailType.choices,
     )
     create_time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
