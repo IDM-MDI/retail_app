@@ -11,13 +11,13 @@ class RetailAdmin(admin.ModelAdmin):
             form.base_fields['provider'].queryset = Retail.objects.none()
         return form
 
-    @admin.action(description="Debt nullification")
-    def debt_nullification(self, request, queryset):
+    @admin.action(description="Clear selected elements' debt")
+    def clear_debt(self, request, queryset):
         print(queryset)
         queryset.update(debt=0)
         return queryset
 
-    actions = (debt_nullification, )
+    actions = (clear_debt,)
 
 
 @admin.register(Product)
