@@ -1,10 +1,12 @@
 from django.contrib import admin
 
-from electronics_retail.models import Retail, Product, Contact, Address, RetailType
+from electronics_retail.models import Retail, RetailType
 
 
 @admin.register(Retail)
 class RetailAdmin(admin.ModelAdmin):
+    list_filter = ('contact__address__city',)
+
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
         if obj and obj.type == RetailType.FACTORY:
@@ -18,18 +20,3 @@ class RetailAdmin(admin.ModelAdmin):
         return queryset
 
     actions = (clear_debt,)
-
-
-@admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(Contact)
-class ContactAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(Address)
-class AddressAdmin(admin.ModelAdmin):
-    pass

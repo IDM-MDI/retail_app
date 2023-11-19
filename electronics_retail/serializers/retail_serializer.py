@@ -4,6 +4,7 @@ from electronics_retail.models import Retail
 
 
 class RetailSerializer(serializers.ModelSerializer):
+
     class Meta:
         model: Retail
         fields = '__all__'
