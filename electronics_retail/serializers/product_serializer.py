@@ -5,5 +5,5 @@ from electronics_retail.models import Product
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
-        model: Product
+        model = Product
         fields = '__all__'

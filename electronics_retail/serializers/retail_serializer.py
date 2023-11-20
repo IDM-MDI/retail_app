@@ -6,7 +6,7 @@ from electronics_retail.models import Retail
 class RetailSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model: Retail
+        model = Retail
         fields = '__all__'
 
     def update(self, instance, validated_data):
