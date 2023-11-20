@@ -1,2 +1,3 @@
 from .retail_serializer import RetailSerializer
 from .product_serializer import ProductSerializer
+from .user_registration_serializer import UserRegistrationSerializer

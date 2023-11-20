@@ -19,7 +19,7 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
-from electronics_retail.views import RetailModelView, ProductModelView, RetailHighDebtAVG
+from electronics_retail.views import RetailModelView, ProductModelView, RetailHighDebtAVG, UserRegistrationView
 
 router = DefaultRouter()
 router.register(r'api/v1/retails', RetailModelView, basename='retails')
@@ -30,6 +30,7 @@ urlpatterns = [
     path('api/token', TokenObtainPairView.as_view()),
     path('api/token/refresh', TokenRefreshView.as_view()),
     path('api/token/verify', TokenVerifyView.as_view()),
+    path('api/register/', UserRegistrationView.as_view()),
     path('api/retails/stats', RetailHighDebtAVG.as_view()),
 ]
 
