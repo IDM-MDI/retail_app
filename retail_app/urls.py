@@ -31,7 +31,7 @@ urlpatterns = [
     path('api/token/refresh', TokenRefreshView.as_view()),
     path('api/token/verify', TokenVerifyView.as_view()),
     path('api/register/', UserRegistrationView.as_view()),
-    path('api/retails/stats', RetailHighDebtAVG.as_view()),
+    path('api/v1/retails/stats', RetailHighDebtAVG.as_view()),
 ]
 
 urlpatterns += router.urls

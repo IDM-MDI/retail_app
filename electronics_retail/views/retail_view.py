@@ -10,7 +10,7 @@ class RetailModelView(viewsets.ModelViewSet):
     queryset = Retail.objects.all()
     serializer_class = RetailSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ('contact__address__city', 'product__id', )
+    filterset_fields = ('contact__address__city', 'products__id', )
     permission_classes = [IsAdminOrOwnerReadOnly]
 
     def get_queryset(self):
