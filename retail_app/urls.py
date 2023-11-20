@@ -19,9 +19,7 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
-from electronics_retail.views.product_view import ProductModelView
-from electronics_retail.views.retail_high_debt_avg import RetailHighDebtAVG
-from electronics_retail.views.retail_view import RetailModelView
+from electronics_retail.views import RetailModelView, ProductModelView, RetailHighDebtAVG
 
 router = DefaultRouter()
 router.register(r'api/v1/retails', RetailModelView, basename='retails')

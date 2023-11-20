@@ -2,8 +2,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 
 from electronics_retail.models import Retail
-from electronics_retail.permissions.is_admin_or_read_only import IsAdminOrOwnerReadOnly
-from electronics_retail.serializers.retail_serializer import RetailSerializer
+from electronics_retail.permissions import IsAdminOrOwnerReadOnly
+from electronics_retail.serializers import RetailSerializer
 
 
 class RetailModelView(viewsets.ModelViewSet):
