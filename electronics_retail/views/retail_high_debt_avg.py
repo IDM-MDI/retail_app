@@ -6,7 +6,7 @@ from electronics_retail.models import Retail
 from electronics_retail.serializers.retail_serializer import RetailSerializer
 
 
-class RetailModelSet(generics.ListAPIView):
+class RetailHighDebtAVG(generics.ListAPIView):
     queryset = Retail.objects.all()
     serializer_class = RetailSerializer
     permission_classes = (IsAdminUser, )

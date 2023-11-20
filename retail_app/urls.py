@@ -16,7 +16,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from rest_framework.routers import DefaultRouter
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
+
+from electronics_retail.views.product_view import ProductModelView
+from electronics_retail.views.retail_high_debt_avg import RetailHighDebtAVG
+from electronics_retail.views.retail_view import RetailModelView
+
+router = DefaultRouter()
+router.register(r'api/v1/retails', RetailModelView, basename='retails')
+router.register(r'api/v1/products', ProductModelView, basename='products')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/token', TokenObtainPairView.as_view()),
+    path('api/token/refresh', TokenRefreshView.as_view()),
+    path('api/token/verify', TokenVerifyView.as_view()),
+    path('api/retails/stats', RetailHighDebtAVG.as_view()),
 ]
+
+urlpatterns += router.urls

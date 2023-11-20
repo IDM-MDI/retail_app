@@ -6,7 +6,7 @@ from electronics_retail.permissions.is_admin_or_read_only import IsAdminOrOwnerR
 from electronics_retail.serializers.retail_serializer import RetailSerializer
 
 
-class RetailModelSet(viewsets.ModelViewSet):
+class RetailModelView(viewsets.ModelViewSet):
     queryset = Retail.objects.all()
     serializer_class = RetailSerializer
     filter_backends = [DjangoFilterBackend]
