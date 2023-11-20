@@ -11,7 +11,7 @@ class RetailModelView(viewsets.ModelViewSet):
     serializer_class = RetailSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ('contact__address__city', 'products__id', )
-    permission_classes = [IsAdminOrOwnerReadOnly]
+    permission_classes = (IsAdminOrOwnerReadOnly, )
 
     def get_queryset(self):
         user = self.request.user

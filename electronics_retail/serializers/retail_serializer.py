@@ -10,5 +10,7 @@ class RetailSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def update(self, instance, validated_data):
-        validated_data.pop('debt', None)
+        if 'debt' in validated_data:
+            del validated_data['debt']
+
         return super().update(instance, validated_data)
