@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from electronics_retail.models import Retail, RetailType
+from electronics_retail.tasks import clear_debt_async
 
 
 @admin.register(Retail)
@@ -15,8 +16,6 @@ class RetailAdmin(admin.ModelAdmin):
 
     @admin.action(description="Clear selected elements' debt")
     def clear_debt(self, request, queryset):
-        print(queryset)
-        queryset.update(debt=0)
-        return queryset
+        return queryset.update(debt=0) if len(queryset) < 20 else clear_debt_async(queryset)
 
     actions = (clear_debt,)
