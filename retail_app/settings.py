@@ -169,11 +169,11 @@ CELERY_TIMEZONE = 'UTC'
 
 CELERY_BEAT_SCHEDULE = {
     'increase-debt-every-3-hours': {
-        'task': 'electronics_retail.tasks.increase_debt',
+        'task': 'electronics_retail.service.debt_service.increase_debt',
         'schedule': 10800,
     },
     'decrease-debt-daily-6:30': {
-        'task': 'electronics_retail.tasks.decrease_debt',
+        'task': 'electronics_retail.service.debt_service.decrease_debt',
         'schedule': crontab(hour='6', minute='30'),
     },
 }

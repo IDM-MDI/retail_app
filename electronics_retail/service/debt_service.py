@@ -25,6 +25,4 @@ def decrease_debt():
 
 @app.task
 def clear_debt_async(queryset):
-    print(queryset)
     return queryset.update(debt=0)
-

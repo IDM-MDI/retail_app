@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from electronics_retail.models import Retail, RetailType
-from electronics_retail.tasks import clear_debt_async
+from electronics_retail.service.debt_service import clear_debt_async
 
 
 @admin.register(Retail)
