@@ -13,15 +13,16 @@ load_dotenv()
 smtp_port = int(os.environ.get('SMTP_PORT'))
 smtp_server = os.environ.get('SMTP_SERVER')
 email_from = os.environ.get('EMAIL_FROM')
-email_password = os.environ.get('EMAIL_PASSWORD')
+PSWD = os.environ.get('PSWD')
 
 
 @app.task
 def send_email(email_to, qr_data):
+    print(email_to)
     msg = MIMEMultipart()
     msg['From'] = email_from
-    msg['To'] = email_to
-    msg['Subject'] = 'QR Code'
+    msg['To'] = ', '.join(email_to)
+    msg['Subject'] = 'QR Code(Retail application)'
 
     qr_code_data = generate_qr_code(qr_data)
     if qr_code_data:
@@ -29,8 +30,14 @@ def send_email(email_to, qr_data):
         msg.attach(image)
 
     mail_server = smtplib.SMTP(smtp_server, smtp_port)
-    mail_server.starttls()
-    mail_server.login(email_from, email_password)
-    mail_server.sendmail(email_from, email_to, msg.as_string())
-    mail_server.quit()
+    try:
+        mail_server.starttls()
+        mail_server.login(email_from, PSWD)
+        mail_server.sendmail(email_from, email_to, msg.as_string())
+    except smtplib.SMTPRecipientsRefused as e:
+        problematic_emails = [addr for addr, error in e.recipients.items()]
+        print(f"Email sending failed for: {problematic_emails}")
+        print(f"SMTPRecipientsRefused error: {e}")
+    finally:
+        mail_server.quit()
 

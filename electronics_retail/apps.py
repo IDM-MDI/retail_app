@@ -7,3 +7,4 @@ class ElectronicsRetailConfig(AppConfig):
 
     def ready(self):
         from .admins import AddressAdmin, ContactAdmin, ProductAdmin, RetailAdmin
+        from .service import post_retail

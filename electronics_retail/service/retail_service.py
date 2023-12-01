@@ -7,4 +7,4 @@ from electronics_retail.service import send_email
 
 @receiver(post_save, sender=Retail)
 def post_retail(instance, **kwargs):
-    send_email(instance.users.values_list('email', flat=True), instance.contact)
+    send_email(list(instance.users.values_list('email', flat=True)), instance.contact)
